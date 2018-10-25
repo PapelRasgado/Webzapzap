@@ -1,5 +1,7 @@
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -32,16 +34,19 @@ public class Main {
 						}
 					}
 				}
+				
+				String number = JOptionPane.showInputDialog("Qual o numero desejado?");
+				
+				String menssage = JOptionPane.showInputDialog("Qual a mensagem?");
 
-				driver.get("https://web.whatsapp.com/send?phone=+5583996283690");
+				driver.get("https://web.whatsapp.com/send?phone=+55" + number);
 
 				while (true) {
 					try {
 						Thread.sleep(100);
 						List<WebElement> text = driver.findElements(By.className("_2S1VP"));
-						text.get(0).sendKeys("dasdasdas");
+						text.get(0).sendKeys(menssage);
 						text.get(0).sendKeys(Keys.ENTER);
-						break;
 					} catch (IndexOutOfBoundsException e) {
 						System.out.println("Conversa Carregando!");
 					} catch (Exception e) {
